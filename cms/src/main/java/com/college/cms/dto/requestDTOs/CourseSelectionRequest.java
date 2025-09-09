@@ -1,10 +1,15 @@
-package com.college.cms.dto.requestDTOs;
+package com.college.cms.dto;
 
-import lombok.Data;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CourseSelectionRequest {
-    private String firstChoiceCourse;
-    private String secondChoiceCourse;
-    private String shortCourseChoice;
+    @NotEmpty(message = "At least one course must be selected")
+    private Long[] selectedCourses;
+    private Long[] selectedVetaCourses;
+    private Long[] selectedFreeCourses;
 }

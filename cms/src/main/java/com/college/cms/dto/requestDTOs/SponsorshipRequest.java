@@ -1,12 +1,17 @@
-package com.college.cms.dto.requestDTOs;
+package com.college.cms.dto;
 
-import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SponsorshipRequest {
-    private String sponsorshipType;
-    private String sponsorFullName;
-    private String sponsorPostalAddress;
-    private String sponsorMobileNumber;
-    private String sponsorEmailAddress;
+    @NotBlank(message = "Sponsorship type is required")
+    private String type;
+    private String name;
+    private String address;
+    private String mobile;
+    private String email;
 }

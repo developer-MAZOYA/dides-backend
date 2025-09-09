@@ -1,12 +1,22 @@
-package com.college.cms.dto.requestDTOs;
+package com.college.cms.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NextOfKinRequest {
-    @NotBlank private String nextOfKinName;
-    @NotBlank private String nextOfKinMobile;
-    @NotBlank private String nextOfKinRelationship;
-    @NotBlank private String nextOfKinResidence;
+    @NotBlank(message = "Next of kin name is required")
+    private String name;
+
+    @NotBlank(message = "Mobile is required")
+    private String mobile;
+
+    @NotBlank(message = "Relationship is required")
+    private String relationship;
+
+    @NotBlank(message = "Residence is required")
+    private String residence;
 }
