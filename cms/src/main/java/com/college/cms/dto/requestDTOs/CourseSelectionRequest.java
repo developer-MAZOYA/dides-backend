@@ -1,4 +1,4 @@
-package com.college.cms.dto;
+package com.college.cms.dto.requestDTOs;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;

@@ -1,12 +1,21 @@
-package com.college.cms.service.impl;
+package com.college.cms.service.Impl;
 
-import com.college.cms.dto.*;
+import com.college.cms.dto.requestDTOs.CourseSelectionRequest;
+import com.college.cms.dto.requestDTOs.DeclarationDTOs;
+import com.college.cms.dto.requestDTOs.EducationRequest;
+import com.college.cms.dto.requestDTOs.NextOfKinRequest;
+import com.college.cms.dto.requestDTOs.PersonalInfoRequest;
+import com.college.cms.dto.requestDTOs.SponsorshipRequest;
+
+
 import com.college.cms.model.Student;
 import com.college.cms.repository.StudentRepository;
 import com.college.cms.service.StudentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -14,11 +23,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
+    @Autowired
     private final StudentRepository studentRepository;
     private final ObjectMapper objectMapper;
 
     @Override
-    public Student saveStep1(PersonalInfoDTO dto) {
+    public Student saveStep1(PersonalInfoRequest dto) {
         Student student = new Student();
         student.setFirstName(dto.getFirstName());
         student.setLastName(dto.getLastName());
@@ -39,7 +49,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student saveStep2(Long studentId, NextOfKinDTO dto) {
+    public Student saveStep2(Long studentId, NextOfKinRequest dto) {
         Student student = studentRepository.findById(studentId).orElseThrow();
         student.setNextOfKinName(dto.getName());
         student.setNextOfKinMobile(dto.getMobile());
@@ -49,7 +59,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student saveStep3(Long studentId, CourseSelectionDTO dto) {
+    public Student saveStep3(Long studentId, CourseSelectionRequest dto) {
         Student student = studentRepository.findById(studentId).orElseThrow();
         student.setSelectedCourses(List.of(dto.getSelectedCourses()));
         student.setSelectedVetaCourses(List.of(dto.getSelectedVetaCourses()));
@@ -58,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student saveStep4(Long studentId, EducationBackgroundDTO dto) throws JsonProcessingException {
+    public Student saveStep4(Long studentId, EducationRequest dto) throws JsonProcessingException {
         Student student = studentRepository.findById(studentId).orElseThrow();
         student.setPrimarySchoolJson(objectMapper.writeValueAsString(dto.getPrimarySchool()));
         student.setSecondarySchoolJson(objectMapper.writeValueAsString(dto.getSecondarySchool()));
@@ -68,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student saveStep5(Long studentId, SponsorshipDTO dto) {
+    public Student saveStep5(Long studentId, SponsorshipRequest dto) {
         Student student = studentRepository.findById(studentId).orElseThrow();
         student.setSponsorshipType(dto.getType());
         student.setSponsorName(dto.getName());
@@ -79,7 +89,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student saveStep6(Long studentId, DeclarationDTO dto) {
+    public Student saveStep6(Long studentId, DeclarationDTOs dto) {
         Student student = studentRepository.findById(studentId).orElseThrow();
         student.setAgreeToTerms(dto.isAgreeToTerms());
         return studentRepository.save(student);

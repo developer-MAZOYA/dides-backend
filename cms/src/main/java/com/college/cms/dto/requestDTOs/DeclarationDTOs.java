@@ -1,4 +1,4 @@
-package com.college.cms.dto;
+package com.college.cms.dto.requestDTOs;
 
 import jakarta.validation.constraints.AssertTrue;
 import lombok.*;
@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeclarationDTO {
+public class DeclarationDTOs {
     @AssertTrue(message = "You must agree to terms")
     private boolean agreeToTerms;
 }

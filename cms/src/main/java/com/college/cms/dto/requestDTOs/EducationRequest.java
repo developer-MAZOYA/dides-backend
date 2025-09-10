@@ -1,6 +1,6 @@
-package com.college.cms.dto;
+package com.college.cms.dto.requestDTOs;
 
-import jakarta.validation.constraints.NotBlank;
+
 import lombok.*;
 import java.util.List;
 

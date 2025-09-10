@@ -1,16 +1,16 @@
-package com.college.cms.dto;
+package com.college.cms.dto.requestDTOs;
 
-import com.college.cms.model.Gender;
-import com.college.cms.model.MaritalStatus;
+
 import jakarta.validation.constraints.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class PersonalInfoRequest {
     @NotBlank(message = "Last name is required")
     private String lastName;
